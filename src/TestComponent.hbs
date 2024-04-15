@@ -1,8 +1,13 @@
 {{#if booleanValue}}
     <div>Loading...</div>
 {{else}}
-    <div>
+    <div style="display: flex; flex-direction: column;">
         <ui5-button @click="{{onClick}}">Add breadcrumb item</ui5-button>
-        {{breadcrumbsRoot}}
+        {{!-- {{breadcrumbsRoot}} --}}
+        <ui5-breadcrumbs id="breadcrumbs-root" separator-style="GreaterThan">
+            {{#each items}}
+                <ui5-breadcrumbs-item>{{this}}</ui5-breadcrumbs-item>
+            {{/each}}
+        </ui5-breadcrumbs>
     </div>
 {{/if}}

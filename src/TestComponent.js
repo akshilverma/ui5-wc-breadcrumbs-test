@@ -73,8 +73,14 @@ class TestComponent extends UI5Element {
 		return [Button, Breadcrumbs];
 	}
 
+	constructor() {
+		super();
+		this.items = [];
+	}
+
 	onEnterDOM() {
 		this.i = 0;
+		this.breadcrumbsRoot = this.shadowRoot.getElementById("breadcrumbs-root");
 	}
 
 	foo() {
@@ -84,25 +90,26 @@ class TestComponent extends UI5Element {
 		}, 100);
 	}
 
-	createBreadcrumbsRoot() {
-		this.breadcrumbsRoot = document.createElement("ui5-breadcrumbs");
-		this.breadcrumbsRoot.setAttribute("separator-style", "GreaterThan");
-	}
+	// createBreadcrumbsRoot() {
+	// 	this.breadcrumbsRoot = document.createElement("ui5-breadcrumbs");
+	// 	this.breadcrumbsRoot.setAttribute("separator-style", "GreaterThan");
+	// }
 
 	onClick() {
 		// create a breadcrumbs item parent element
-		if (!this.breadcrumbsRoot) {
-			this.createBreadcrumbsRoot();
-		}
+		// if (!this.breadcrumbsRoot) {
+		// 	this.createBreadcrumbsRoot();
+		// }
 
 		this.i++;
 		const item = `item${this.i}`;
 
 		// create a breadcrumb item
-		const breadcrumbsItem = document.createElement("ui5-breadcrumbs-item");
-		const breadcrumbsItemText = document.createTextNode(item);
-		breadcrumbsItem.appendChild(breadcrumbsItemText);
-		this.breadcrumbsRoot.appendChild(breadcrumbsItem);
+		// const breadcrumbsItem = document.createElement("ui5-breadcrumbs-item");
+		// const breadcrumbsItemText = document.createTextNode(item);
+		// breadcrumbsItem.appendChild(breadcrumbsItemText);
+		// this.breadcrumbsRoot.appendChild(breadcrumbsItem);
+		this.items.push(item);
 
 		// re-render after 100ms timeout
 		this.foo();
